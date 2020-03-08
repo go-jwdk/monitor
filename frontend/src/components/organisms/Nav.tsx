@@ -9,7 +9,8 @@ import {
   Link,
   NavLink,
   useRouteMatch,
-  useParams
+  useParams,
+  withRouter
 } from "react-router-dom";
 import * as Logo from "../molecules/Logo";
 
@@ -30,34 +31,34 @@ const Li = styled.li({
   fontSize: "1.4rem"
 });
 
-const LinkItem = {
+const LinkItem = styled.a({
   display: "block",
   padding: "14px 16px",
   color: "#666",
   textDecoration: "none",
+  cursor: "pointer",
   "&:hover": {
     background: "#f9f9f9"
   }
-};
+});
 
-export const View = () => {
+const View = props => {
+  const goto = path => {
+    props.history.push(path);
+  };
   return (
-    <Router>
-      <Nav>
-        <Logo.View />
-        <Ul>
-          <Li>
-            <NavLink style={LinkItem} to="/">
-              DashBoard
-            </NavLink>
-          </Li>
-          <Li>
-            <NavLink style={LinkItem} to="/settings">
-              Settings
-            </NavLink>
-          </Li>
-        </Ul>
-      </Nav>
-    </Router>
+    <Nav>
+      <Logo.View onClick={() => goto("/")} />
+      <Ul>
+        <Li>
+          <LinkItem onClick={() => goto("/")}>DashBoard</LinkItem>
+        </Li>
+        <Li>
+          <LinkItem onClick={() => goto("/settings")}>Settings</LinkItem>
+        </Li>
+      </Ul>
+    </Nav>
   );
 };
+
+export default withRouter(View);
