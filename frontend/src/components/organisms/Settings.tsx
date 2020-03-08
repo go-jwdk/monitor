@@ -8,5 +8,5 @@ const Content = styled.div({
 });
 
 export const View = () => {
-  return <Content>contents</Content>;
+  return <Content>settings</Content>;
 };

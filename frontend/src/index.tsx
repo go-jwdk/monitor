@@ -2,6 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "sanitize.css";
 
-import Dashboard from "./app";
+import App from "./app";
 
-ReactDOM.render([<Dashboard key="app" />], document.querySelector("#app"));
+ReactDOM.render([<App key="app" />], document.querySelector("#app"));
