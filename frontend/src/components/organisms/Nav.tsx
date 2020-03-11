@@ -13,6 +13,7 @@ import {
   withRouter
 } from "react-router-dom";
 import * as Logo from "../molecules/Logo";
+import * as Icon from "../atom/Icon";
 
 const Nav = styled.div({
   gridArea: "Nav",
@@ -32,7 +33,8 @@ const Li = styled.li({
 });
 
 const LinkItem = styled.a({
-  display: "block",
+  display: "flex",
+  alignItems: "center",
   padding: "14px 16px",
   color: "#666",
   textDecoration: "none",
@@ -40,6 +42,11 @@ const LinkItem = styled.a({
   "&:hover": {
     background: "#f9f9f9"
   }
+});
+
+const Label = styled.span({
+  display: "block",
+  marginLeft: 8
 });
 
 const View = props => {
@@ -51,10 +58,16 @@ const View = props => {
       <Logo.View onClick={() => goto("/")} />
       <Ul>
         <Li>
-          <LinkItem onClick={() => goto("/")}>DashBoard</LinkItem>
+          <LinkItem onClick={() => goto("/")}>
+            <Icon.PieChart />
+            <Label>DashBoard</Label>
+          </LinkItem>
         </Li>
         <Li>
-          <LinkItem onClick={() => goto("/settings")}>Settings</LinkItem>
+          <LinkItem onClick={() => goto("/settings")}>
+            <Icon.Settings />
+            <Label>Settings</Label>
+          </LinkItem>
         </Li>
       </Ul>
     </Nav>
