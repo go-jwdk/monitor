@@ -10,25 +10,26 @@ import {
   useRouteMatch,
   useParams
 } from "react-router-dom";
+import { motion } from "framer-motion";
 import Nav from "./components/organisms/Nav";
 import * as Header from "./components/organisms/Header";
 import * as Content from "./components/organisms/Settings";
 import * as Dashboard from "./components/organisms/Dashboard";
 
-const Layout = styled.div(
+const Layout = styled(motion.div)(
   {
     display: "grid",
-    // gridTemplateColumns: "150px 1fr",
     gridTemplateRows: "50px 1fr",
+    gridTemplateColumns: "150px 1fr",
     gridTemplateAreas: `
   "Nav Header"
   "Nav Content"
   `,
     height: "100%"
-  },
-  (props: { navWidth: boolean }) => ({
-    gridTemplateColumns: props.navWidth ? "150px 1fr" : "50px 1fr"
-  })
+  }
+  // (props: { navWidth: boolean }) => ({
+  //   gridTemplateColumns: props.navWidth ? "150px 1fr" : "50px 1fr"
+  // })
 );
 
 const View = () => {
@@ -37,8 +38,17 @@ const View = () => {
     setState(!state);
   };
 
+  const variants = {
+    expand: { gridTemplateColumns: "150px 1fr" },
+    fold: { gridTemplateColumns: "50px 1fr" }
+  };
+
   return (
-    <Layout navWidth={state}>
+    <Layout
+      // navWidth={state}
+      animate={state ? "expand" : "fold"}
+      variants={variants}
+    >
       <Global
         styles={css`
           html,
