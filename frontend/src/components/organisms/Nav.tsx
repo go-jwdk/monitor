@@ -50,23 +50,24 @@ const Label = styled.span({
 });
 
 const View = props => {
+  // console.log("props:", props.toggleNav);
   const goto = path => {
     props.history.push(path);
   };
   return (
     <Nav>
-      <Logo.View onClick={() => goto("/")} />
+      <Logo.View onClick={() => goto("/")} {...props} />
       <Ul>
         <Li>
           <LinkItem onClick={() => goto("/")}>
             <Icon.PieChart />
-            <Label>DashBoard</Label>
+            {props.toggleNav ? <Label>DashBoard</Label> : null}
           </LinkItem>
         </Li>
         <Li>
           <LinkItem onClick={() => goto("/settings")}>
             <Icon.Settings />
-            <Label>Settings</Label>
+            {props.toggleNav ? <Label>Settings</Label> : null}
           </LinkItem>
         </Li>
       </Ul>

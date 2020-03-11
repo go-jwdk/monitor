@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import { Global, css } from "@emotion/core";
 import styled from "@emotion/styled";
@@ -15,20 +15,30 @@ import * as Header from "./components/organisms/Header";
 import * as Content from "./components/organisms/Settings";
 import * as Dashboard from "./components/organisms/Dashboard";
 
-const Layout = styled.div({
-  display: "grid",
-  gridTemplateColumns: "150px 1fr",
-  gridTemplateRows: "50px 1fr",
-  gridTemplateAreas: `
+const Layout = styled.div(
+  {
+    display: "grid",
+    // gridTemplateColumns: "150px 1fr",
+    gridTemplateRows: "50px 1fr",
+    gridTemplateAreas: `
   "Nav Header"
   "Nav Content"
   `,
-  height: "100%"
-});
+    height: "100%"
+  },
+  (props: { navWidth: boolean }) => ({
+    gridTemplateColumns: props.navWidth ? "150px 1fr" : "50px 1fr"
+  })
+);
 
 const View = () => {
+  const [state, setState] = useState(true);
+  const toggleNav = () => {
+    setState(!state);
+  };
+
   return (
-    <Layout>
+    <Layout navWidth={state}>
       <Global
         styles={css`
           html,
@@ -50,7 +60,7 @@ const View = () => {
         `}
       />
       <Router>
-        <Nav />
+        <Nav onClickToggle={toggleNav} toggleNav={state} />
         <Header.View />
         <Switch>
           <Route exact path="/">
