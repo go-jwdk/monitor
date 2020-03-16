@@ -21,8 +21,6 @@ const Nav = styled.div({
 });
 
 const Ul = styled.ul({
-  position: "sticky",
-  top: "50px",
   listStyle: "none",
   margin: 0,
   padding: 0

@@ -16,21 +16,16 @@ import * as Header from "./components/organisms/Header";
 import * as Content from "./components/organisms/Settings";
 import * as Dashboard from "./components/organisms/Dashboard";
 
-const Layout = styled(motion.div)(
-  {
-    display: "grid",
-    gridTemplateRows: "50px 1fr",
-    gridTemplateColumns: "150px 1fr",
-    gridTemplateAreas: `
+const Layout = styled(motion.div)({
+  display: "grid",
+  gridTemplateRows: "50px 1fr",
+  gridTemplateColumns: "150px 1fr",
+  gridTemplateAreas: `
   "Nav Header"
   "Nav Content"
   `,
-    height: "100%"
-  }
-  // (props: { navWidth: boolean }) => ({
-  //   gridTemplateColumns: props.navWidth ? "150px 1fr" : "50px 1fr"
-  // })
-);
+  height: "100%"
+});
 
 const View = () => {
   const [state, setState] = useState(true);
@@ -62,7 +57,7 @@ const View = () => {
 
           body {
             font-size: 100%;
-            background: #f0f0f0;
+            background: #f4f4f4;
           }
           #app {
             height: 100%;

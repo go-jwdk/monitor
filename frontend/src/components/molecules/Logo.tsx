@@ -10,8 +10,6 @@ interface Props {
 
 const Head = styled.div({
   display: "flex",
-  position: "sticky",
-  top: 0,
   alignContent: "center",
   justifyContent: "center",
   padding: 14,
