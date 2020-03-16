@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import styled from "@emotion/styled";
 import { format, addMilliseconds } from "date-fns";
@@ -14,17 +14,22 @@ import {
 import * as Mock from "../../mock/chart";
 
 export const RenderLineChart = () => {
-  const [minState, setMinState] = useState(30);
-  // const [dataState, setDataState] = useState({});
-  // setDataState(Mock.LogDate(minState));
+  const Interval = 3;
+  const [minState, setMinState] = useState(Interval);
+  const [dataState, setDataState] = useState({});
 
-  const data = Mock.LogDate(minState);
+  const refData = useRef(dataState);
+  useEffect(() => {
+    refData.current = dataState;
+  }, [dataState]);
+  useEffect(() => {
+    setDataState(Mock.LogDate(minState));
+    const interval = setInterval(() => {
+      setDataState(Mock.UpdateLogDate(refData.current));
+    }, Interval * 1000);
 
-  // useEffect(() => {
-  //   setInterval(() => {
-  //     data = Mock.UpdateLogDate(data);
-  //   }, 1000);
-  // }, []);
+    return () => clearInterval(interval);
+  }, []);
 
   // const data = [
   //   {
@@ -71,7 +76,7 @@ export const RenderLineChart = () => {
   //   }
   // ];
   return (
-    <LineChart width={500} height={300} data={data}>
+    <LineChart width={500} height={300} data={dataState}>
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="name" />
       <YAxis />
