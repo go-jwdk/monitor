@@ -15,6 +15,7 @@ import * as Mock from "../../mock/chart";
 
 export const RenderLineChart = () => {
   const Interval = 3;
+  const Number = 20;
   const [minState, setMinState] = useState(Interval);
   const [dataState, setDataState] = useState({});
 
@@ -23,9 +24,9 @@ export const RenderLineChart = () => {
     refData.current = dataState;
   }, [dataState]);
   useEffect(() => {
-    setDataState(Mock.LogDate(minState, 5));
+    setDataState(Mock.LogDate(minState, Number));
     const interval = setInterval(() => {
-      setDataState(Mock.UpdateLogDate(refData.current));
+      setDataState(Mock.UpdateLogDate(refData.current, Number));
     }, Interval * 1000);
 
     return () => clearInterval(interval);
@@ -49,10 +50,20 @@ export const RenderLineChart = () => {
         type="monotone"
         dataKey="que1"
         stroke="#8884d8"
-        // activeDot={{ r: 8 }}
+        isAnimationActive={false}
       />
-      <Line type="monotone" dataKey="que2" stroke="#82ca9d" />
-      <Line type="monotone" dataKey="que3" stroke="#f56525" />
+      <Line
+        type="monotone"
+        dataKey="que2"
+        stroke="#82ca9d"
+        isAnimationActive={false}
+      />
+      <Line
+        type="monotone"
+        dataKey="que3"
+        stroke="#f56525"
+        isAnimationActive={false}
+      />
     </LineChart>
   );
 };

@@ -13,13 +13,13 @@ export const LogDate = (minState, rangeNumber) => {
   return range;
 };
 
-export const UpdateLogDate = data => {
+export const UpdateLogDate = (data, rangeNumber) => {
   const newDate = [];
   data.map((i, index) => {
     newDate[index] = data[index + 1];
   });
 
-  newDate[4] = {
+  newDate[rangeNumber - 1] = {
     name: format(sub(new Date(), { seconds: 0 }), "kk:mm:ss"),
     que1: Math.ceil(Math.random() * 100),
     que2: Math.ceil(Math.random() * 100),
