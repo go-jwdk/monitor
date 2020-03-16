@@ -1,7 +1,6 @@
 import { format, sub } from "date-fns";
 
-export const LogDate = minState => {
-  const rangeNumber = 5;
+export const LogDate = (minState, rangeNumber) => {
   const range = [...Array(rangeNumber)];
   range.map((i, index) => {
     range[rangeNumber - 1 - index] = {
