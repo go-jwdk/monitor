@@ -5,12 +5,13 @@ import * as Select from "../atom/Select";
 
 const Header = styled.div({
   gridArea: "Header",
+  position: "sticky",
+  top: "0",
   display: "flex",
-  // display: "grid",
-  // gridTemplateColumns: "1fr 100px",
   background: "#fff",
   alignItems: "center",
-  padding: 8
+  padding: 8,
+  zIndex: 1
 });
 
 export const View = () => {

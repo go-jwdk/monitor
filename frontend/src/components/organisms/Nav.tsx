@@ -21,8 +21,10 @@ const Nav = styled.div({
 });
 
 const Ul = styled.ul({
+  position: "sticky",
+  top: "50px",
   listStyle: "none",
-  margin: "24px 0 0",
+  margin: 0,
   padding: 0
 });
 
@@ -50,7 +52,6 @@ const Label = styled.span({
 });
 
 const View = props => {
-  // console.log("props:", props.toggleNav);
   const goto = path => {
     props.history.push(path);
   };

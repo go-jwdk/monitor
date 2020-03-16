@@ -10,6 +10,8 @@ interface Props {
 
 const Head = styled.div({
   display: "flex",
+  position: "sticky",
+  top: 0,
   alignContent: "center",
   justifyContent: "center",
   padding: 14,
@@ -26,10 +28,7 @@ const Logo = styled.div({
   justifyContent: "center",
   width: "100%",
   color: "#30a5d5",
-  cursor: "pointer",
-  svg: {
-    // width: "100%"
-  }
+  cursor: "pointer"
 });
 
 export const View = props => {
