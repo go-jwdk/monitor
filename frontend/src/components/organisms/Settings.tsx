@@ -3,10 +3,17 @@ import ReactDOM from "react-dom";
 import styled from "@emotion/styled";
 import * as GlobalStyle from "../../core/globalStyle";
 
-const Content = styled.div(GlobalStyle, {
+const Header = styled.div(GlobalStyle.Header, {});
+
+const Content = styled.div(GlobalStyle.Contents, {
   gridArea: "Content"
 });
 
 export const View = () => {
-  return <Content>settings</Content>;
+  return (
+    <>
+      <Header></Header>
+      <Content>settings</Content>
+    </>
+  );
 };

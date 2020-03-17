@@ -66,7 +66,6 @@ const View = () => {
       />
       <Router>
         <Nav onClickToggle={toggleNav} toggleNav={state} />
-        <Header.View />
         <Switch>
           <Route exact path="/">
             <Dashboard.View />

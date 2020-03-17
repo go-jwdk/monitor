@@ -4,17 +4,41 @@ import styled from "@emotion/styled";
 import * as Card from "../atom/Card";
 import * as Chart from "../molecules/Chart";
 import * as GlobalStyle from "../../core/globalStyle";
+import * as Select from "../atom/Select";
+
+const Header = styled.div(GlobalStyle.Header, {});
 
 const Content = styled.div(GlobalStyle.Contents, {
   gridArea: "Content"
 });
 
 export const View = () => {
+  const data = [
+    { value: 5, label: "5s" },
+    { value: 10, label: "10s" },
+    { value: 30, label: "30s" },
+    { value: 60, label: "1m" },
+    { value: 120, label: "2m" },
+    { value: 300, label: "5m" },
+    { value: 600, label: "10m" },
+    { value: 1800, label: "30m" },
+    { value: 3600, label: "1h" },
+    { value: 86400, label: "1d" }
+  ];
   return (
-    <Content>
-      <Card.View>
-        <Chart.RenderLineChart />
-      </Card.View>
-    </Content>
+    <>
+      <Header>
+        <Select.View styles={{ marginLeft: "auto" }} data={data} />
+      </Header>
+      <Content>
+        <Card.View>
+          <Chart.RenderLineChart />
+        </Card.View>
+      </Content>
+    </>
   );
+};
+
+export const Head = () => {
+  return <>Dashboard</>;
 };
