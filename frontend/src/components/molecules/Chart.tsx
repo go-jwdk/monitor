@@ -13,23 +13,28 @@ import {
 } from "recharts";
 import * as Mock from "../../mock/chart";
 
-export const RenderLineChart = () => {
-  const Interval = 3;
+export const RenderLineChart = props => {
+  const Interval = props.intervalState;
   const Number = 20;
   const [minState, setMinState] = useState(Interval);
   const [dataState, setDataState] = useState({});
 
   const refData = useRef(dataState);
   useEffect(() => {
-    refData.current = dataState;
-  }, [dataState]);
-  useEffect(() => {
-    setDataState(Mock.LogDate(minState, Number));
+    setMinState(Interval);
     const interval = setInterval(() => {
       setDataState(Mock.UpdateLogDate(refData.current, Number));
     }, Interval * 1000);
 
     return () => clearInterval(interval);
+  }, [Interval]);
+
+  useEffect(() => {
+    refData.current = dataState;
+  }, [dataState]);
+
+  useEffect(() => {
+    setDataState(Mock.LogDate(minState, Number));
   }, []);
 
   // data = {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import styled from "@emotion/styled";
 import * as Card from "../atom/Card";
@@ -13,8 +13,11 @@ const Content = styled.div(GlobalStyle.Contents, {
 });
 
 export const View = () => {
+  const intervalInit = 5;
+  const [intervalState, setIntervalState] = useState(intervalInit);
   const data = [
-    { value: 5, label: "5s" },
+    { value: 1, label: "1s" },
+    { value: intervalInit, label: "5s" },
     { value: 10, label: "10s" },
     { value: 30, label: "30s" },
     { value: 60, label: "1m" },
@@ -28,11 +31,16 @@ export const View = () => {
   return (
     <>
       <Header>
-        <Select.View styles={{ marginLeft: "auto" }} data={data} />
+        <Select.View
+          styles={{ marginLeft: "auto" }}
+          data={data}
+          defaultValue={intervalInit}
+          onChange={e => setIntervalState(e.currentTarget.value)}
+        />
       </Header>
       <Content>
         <Card.View>
-          <Chart.RenderLineChart />
+          <Chart.RenderLineChart intervalState={intervalState} />
         </Card.View>
       </Content>
     </>

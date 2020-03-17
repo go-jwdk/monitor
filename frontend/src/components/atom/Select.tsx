@@ -7,7 +7,11 @@ const Option = styled.option({});
 
 export const View = props => {
   return (
-    <Select style={props.styles}>
+    <Select
+      style={props.styles}
+      onChange={props.onChange}
+      defaultValue={props.defaultValue}
+    >
       {props.data.map((i, index) => {
         return (
           <Option key={index} value={i.value}>
