@@ -16,6 +16,7 @@ export const View = () => {
   const intervalInit = 5;
   const [intervalState, setIntervalState] = useState(intervalInit);
   const data = [
+    { value: 0, label: "OFF" },
     { value: 1, label: "1s" },
     { value: intervalInit, label: "5s" },
     { value: 10, label: "10s" },

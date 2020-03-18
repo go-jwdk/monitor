@@ -21,12 +21,14 @@ export const RenderLineChart = props => {
 
   const refData = useRef(dataState);
   useEffect(() => {
-    setMinState(Interval);
-    const interval = setInterval(() => {
-      setDataState(Mock.UpdateLogDate(refData.current, Number));
-    }, Interval * 1000);
+    if (Interval > 0) {
+      setMinState(Interval);
+      const interval = setInterval(() => {
+        setDataState(Mock.UpdateLogDate(refData.current, Number));
+      }, Interval * 1000);
 
-    return () => clearInterval(interval);
+      return () => clearInterval(interval);
+    }
   }, [Interval]);
 
   useEffect(() => {
