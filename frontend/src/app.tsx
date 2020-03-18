@@ -57,7 +57,7 @@ const View = () => {
 
           body {
             font-size: 100%;
-            background: #f4f4f4;
+            /* background: #f4f4f4; */
           }
           #app {
             height: 100%;

@@ -5,8 +5,7 @@ import * as Card from "../atom/Card";
 import * as Chart from "../molecules/Chart";
 import * as GlobalStyle from "../../core/globalStyle";
 import * as Select from "../atom/Select";
-
-const Header = styled.div(GlobalStyle.Header, {});
+import * as Header from "../organisms/Header";
 
 const Content = styled.div(GlobalStyle.Contents, {
   gridArea: "Content"
@@ -31,14 +30,14 @@ export const View = () => {
   ];
   return (
     <>
-      <Header>
+      <Header.View>
         <Select.View
           styles={{ marginLeft: "auto" }}
           data={data}
           defaultValue={intervalInit}
           onChange={e => setIntervalState(e.currentTarget.value)}
         />
-      </Header>
+      </Header.View>
       <Content>
         <Card.View>
           <Chart.RenderLineChart intervalState={intervalState} />

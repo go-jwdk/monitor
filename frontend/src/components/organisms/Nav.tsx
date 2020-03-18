@@ -17,7 +17,8 @@ import * as Icon from "../atom/Icon";
 
 const Nav = styled.div({
   gridArea: "Nav",
-  background: "#fff"
+  // background: "#fff"
+  background: "#525aa7"
 });
 
 const Ul = styled.ul({
@@ -32,15 +33,17 @@ const Li = styled.li({
   fontSize: "1.4rem"
 });
 
-const LinkItem = styled.a({
+const LinkItem = styled(NavLink)({
   display: "flex",
   alignItems: "center",
   padding: "14px 16px",
-  color: "#666",
+  color: "#fff",
   textDecoration: "none",
   cursor: "pointer",
+  opacity: 0.6,
   "&:hover": {
-    background: "#f9f9f9"
+    // background: "#f9f9f9"
+    opacity: 1
   }
 });
 
@@ -50,21 +53,32 @@ const Label = styled.span({
 });
 
 const View = props => {
-  const goto = path => {
-    props.history.push(path);
-  };
+  // const goto = path => {
+  //   props.history.push(path);
+  // };
   return (
     <Nav>
-      <Logo.View onClick={() => goto("/")} {...props} />
+      <Logo.View {...props} />
       <Ul>
         <Li>
-          <LinkItem onClick={() => goto("/")}>
+          <LinkItem
+            exact
+            to="/"
+            activeStyle={{
+              opacity: 1
+            }}
+          >
             <Icon.PieChart />
             {props.toggleNav ? <Label>DashBoard</Label> : null}
           </LinkItem>
         </Li>
         <Li>
-          <LinkItem onClick={() => goto("/settings")}>
+          <LinkItem
+            to="/settings"
+            activeStyle={{
+              opacity: 1
+            }}
+          >
             <Icon.Settings />
             {props.toggleNav ? <Label>Settings</Label> : null}
           </LinkItem>

@@ -2,8 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import styled from "@emotion/styled";
 import * as GlobalStyle from "../../core/globalStyle";
-
-const Header = styled.div(GlobalStyle.Header, {});
+import * as Header from "../organisms/Header";
 
 const Content = styled.div(GlobalStyle.Contents, {
   gridArea: "Content"
@@ -12,7 +11,7 @@ const Content = styled.div(GlobalStyle.Contents, {
 export const View = () => {
   return (
     <>
-      <Header></Header>
+      <Header.View></Header.View>
       <Content>settings</Content>
     </>
   );
