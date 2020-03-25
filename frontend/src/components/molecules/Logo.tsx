@@ -37,7 +37,7 @@ export const View = props => {
       <MenuIcon onClick={props.onClickToggle}>
         <Icon.Menu />
       </MenuIcon>
-      {props.toggleNav ? (
+      {props.toggleNav.flag ? (
         <NavLink to="/">
           <Logo onClick={props.onClick}>
             <svg

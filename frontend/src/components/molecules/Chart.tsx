@@ -12,6 +12,7 @@ import {
   Legend
 } from "recharts";
 import * as Mock from "../../mock/chart";
+import { ContextW } from "../../app";
 
 export const RenderLineChart = props => {
   const Interval = props.intervalState;
@@ -47,30 +48,38 @@ export const RenderLineChart = props => {
   // }
 
   return (
-    <LineChart width={500} height={300} data={dataState}>
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name" />
-      <YAxis />
-      <Tooltip />
-      <Legend />
-      <Line
-        type="monotone"
-        dataKey="que1"
-        stroke="#8884d8"
-        isAnimationActive={false}
-      />
-      <Line
-        type="monotone"
-        dataKey="que2"
-        stroke="#82ca9d"
-        isAnimationActive={false}
-      />
-      <Line
-        type="monotone"
-        dataKey="que3"
-        stroke="#f56525"
-        isAnimationActive={false}
-      />
-    </LineChart>
+    <ContextW.Consumer>
+      {value => (
+        <LineChart
+          width={value.width - value.navWidth - 8 * 2 * 2}
+          height={300}
+          data={dataState}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Line
+            type="monotone"
+            dataKey="que1"
+            stroke="#8884d8"
+            isAnimationActive={false}
+          />
+          <Line
+            type="monotone"
+            dataKey="que2"
+            stroke="#82ca9d"
+            isAnimationActive={false}
+          />
+          <Line
+            type="monotone"
+            dataKey="que3"
+            stroke="#f56525"
+            isAnimationActive={false}
+          />
+        </LineChart>
+      )}
+    </ContextW.Consumer>
   );
 };

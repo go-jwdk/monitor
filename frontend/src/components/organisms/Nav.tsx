@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import ReactDOM from "react-dom";
 import styled from "@emotion/styled";
 import { css } from "@emotion/core";
@@ -56,8 +56,15 @@ const View = props => {
   // const goto = path => {
   //   props.history.push(path);
   // };
+
+  // const NavRef = useRef(null);
+  // useEffect(() => {
+  //   console.log(NavRef.current.offsetWidth)
+  // }, [props]);
   return (
-    <Nav>
+    <Nav
+    // ref={NavRef}
+    >
       <Logo.View {...props} />
       <Ul>
         <Li>
@@ -69,7 +76,7 @@ const View = props => {
             }}
           >
             <Icon.PieChart />
-            {props.toggleNav ? <Label>DashBoard</Label> : null}
+            {props.toggleNav.flag ? <Label>DashBoard</Label> : null}
           </LinkItem>
         </Li>
         <Li>
@@ -80,7 +87,7 @@ const View = props => {
             }}
           >
             <Icon.Settings />
-            {props.toggleNav ? <Label>Settings</Label> : null}
+            {props.toggleNav.flag ? <Label>Settings</Label> : null}
           </LinkItem>
         </Li>
       </Ul>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 import { Global, css } from "@emotion/core";
 import styled from "@emotion/styled";
@@ -27,10 +27,47 @@ const Layout = styled(motion.div)({
   height: "100%"
 });
 
+const getWidth = () =>
+  window.innerWidth ||
+  document.documentElement.clientWidth ||
+  document.body.clientWidth;
+
+export const useCurrentWitdh = () => {
+  // save current window width in the state object
+  let [width, setWidth] = useState(getWidth());
+
+  // in this case useEffect will execute only once because
+  // it does not have any dependencies.
+  useEffect(() => {
+    // timeoutId for debounce mechanism
+    let timeoutId = null;
+    const resizeListener = () => {
+      // prevent execution of previous setTimeout
+      clearTimeout(timeoutId);
+      // change width from the state object after 150 milliseconds
+      timeoutId = setTimeout(() => setWidth(getWidth()), 150);
+    };
+    // set resize listener
+    window.addEventListener("resize", resizeListener);
+
+    // clean up function
+    return () => {
+      // remove resize listener
+      window.removeEventListener("resize", resizeListener);
+    };
+  }, []);
+
+  return width;
+};
+
+export const ContextW = React.createContext(null);
+
 const View = () => {
-  const [state, setState] = useState(true);
+  let width = useCurrentWitdh();
+
+  const [state, setState] = useState({ flag: true, width: 150 });
   const toggleNav = () => {
-    setState(!state);
+    setState({ flag: !state.flag, width: !state.flag ? 150 : 50 });
   };
 
   const variants = {
@@ -38,11 +75,17 @@ const View = () => {
     fold: { gridTemplateColumns: "50px 1fr" }
   };
 
+  const NavRef = useRef(null);
+  useEffect(() => {
+    console.log(NavRef.current.offsetWidth);
+  }, [NavRef]);
+
   return (
     <Layout
       // navWidth={state}
-      animate={state ? "expand" : "fold"}
+      animate={state.flag ? "expand" : "fold"}
       variants={variants}
+      ref={NavRef}
     >
       <Global
         styles={css`
@@ -57,24 +100,25 @@ const View = () => {
 
           body {
             font-size: 100%;
-            /* background: #f4f4f4; */
           }
           #app {
             height: 100%;
           }
         `}
       />
-      <Router>
-        <Nav onClickToggle={toggleNav} toggleNav={state} />
-        <Switch>
-          <Route exact path="/">
-            <Dashboard.View />
-          </Route>
-          <Route path="/settings">
-            <Content.View />
-          </Route>
-        </Switch>
-      </Router>
+      <ContextW.Provider value={{ width: width, navWidth: state.width }}>
+        <Router>
+          <Nav onClickToggle={toggleNav} toggleNav={state} />
+          <Switch>
+            <Route exact path="/">
+              <Dashboard.View />
+            </Route>
+            <Route path="/settings">
+              <Content.View />
+            </Route>
+          </Switch>
+        </Router>
+      </ContextW.Provider>
     </Layout>
   );
 };
