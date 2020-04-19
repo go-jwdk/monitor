@@ -65,6 +65,32 @@ export const View = () => {
             </Table.Tr>
           </Table.Tbody>
         </Table.Table>
+
+        <Card.View>
+          <Chart.RenderLineChart intervalState={intervalState} />
+        </Card.View>
+        <Table.Table width="100%">
+          <Table.Thead>
+            <Table.Tr>
+              <Table.Th>Queues</Table.Th>
+              <Table.Th>Contents</Table.Th>
+            </Table.Tr>
+          </Table.Thead>
+          <Table.Tbody>
+            <Table.Tr>
+              <Table.Td>A</Table.Td>
+              <Table.Td>name:aaaa</Table.Td>
+            </Table.Tr>
+            <Table.Tr>
+              <Table.Td>B</Table.Td>
+              <Table.Td>name:bbb</Table.Td>
+            </Table.Tr>
+            <Table.Tr>
+              <Table.Td>C</Table.Td>
+              <Table.Td>name:ccc</Table.Td>
+            </Table.Tr>
+          </Table.Tbody>
+        </Table.Table>
       </Content>
     </>
   );
