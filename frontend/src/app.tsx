@@ -8,13 +8,14 @@ import {
   Route,
   Link,
   useRouteMatch,
-  useParams
+  useParams,
 } from "react-router-dom";
 import { motion } from "framer-motion";
 import Nav from "./components/organisms/Nav";
 import * as Header from "./components/organisms/Header";
 import * as Content from "./components/organisms/Settings";
 import * as Dashboard from "./components/organisms/Dashboard";
+import * as Queues from "./network/queues";
 
 const Layout = styled(motion.div)({
   display: "grid",
@@ -24,7 +25,7 @@ const Layout = styled(motion.div)({
   "Nav Header"
   "Nav Content"
   `,
-  height: "100%"
+  height: "100%",
 });
 
 const getWidth = () =>
@@ -60,25 +61,30 @@ export const useCurrentWitdh = () => {
   return width;
 };
 
-export const ContextW = React.createContext(null);
+export const Context = React.createContext(null);
 
 const View = () => {
   let width = useCurrentWitdh();
 
   const [state, setState] = useState({ flag: true, width: 150 });
+  const [stateQueues, setQueuesState] = useState();
   const toggleNav = () => {
     setState({ flag: !state.flag, width: !state.flag ? 150 : 50 });
   };
 
   const variants = {
     expand: { gridTemplateColumns: "150px 1fr" },
-    fold: { gridTemplateColumns: "50px 1fr" }
+    fold: { gridTemplateColumns: "50px 1fr" },
   };
 
   const NavRef = useRef(null);
   useEffect(() => {
-    console.log(NavRef.current.offsetWidth);
+    // console.log(NavRef.current.offsetWidth);
   }, [NavRef]);
+
+  useEffect(() => {
+    Queues.getQueues().then((result) => setQueuesState(result));
+  }, []);
 
   return (
     <Layout
@@ -106,7 +112,9 @@ const View = () => {
           }
         `}
       />
-      <ContextW.Provider value={{ width: width, navWidth: state.width }}>
+      <Context.Provider
+        value={{ width: width, navWidth: state.width, queues: stateQueues }}
+      >
         <Router>
           <Nav onClickToggle={toggleNav} toggleNav={state} />
           <Switch>
@@ -118,7 +126,7 @@ const View = () => {
             </Route>
           </Switch>
         </Router>
-      </ContextW.Provider>
+      </Context.Provider>
     </Layout>
   );
 };

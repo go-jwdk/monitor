@@ -9,12 +9,12 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend
+  Legend,
 } from "recharts";
 import * as Mock from "../../mock/chart";
-import { ContextW } from "../../app";
+import { Context } from "../../app";
 
-export const RenderLineChart = props => {
+export const RenderLineChart = (props) => {
   const Interval = props.intervalState;
   const Number = 20;
   const [minState, setMinState] = useState(Interval);
@@ -48,8 +48,8 @@ export const RenderLineChart = props => {
   // }
 
   return (
-    <ContextW.Consumer>
-      {value => (
+    <Context.Consumer>
+      {(value) => (
         <LineChart
           width={value.width - value.navWidth - 8 * 2 * 2}
           height={300}
@@ -80,6 +80,6 @@ export const RenderLineChart = props => {
           />
         </LineChart>
       )}
-    </ContextW.Consumer>
+    </Context.Consumer>
   );
 };
