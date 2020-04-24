@@ -8,8 +8,8 @@ interface Props {
 
 const Card = styled.div({
   background: "#fff",
-  padding: 8,
-  display: "inline-block"
+  padding: 16,
+  borderRadius: 10,
 });
 
 export const View = ({ children }: Props) => {

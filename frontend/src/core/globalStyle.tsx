@@ -1,6 +1,7 @@
 import { css } from "@emotion/core";
 
 export const Contents = css({
-  padding: 8,
-  overflowX: "scroll"
+  padding: 32,
+  overflowX: "scroll",
+  background: "#eff1fa",
 });

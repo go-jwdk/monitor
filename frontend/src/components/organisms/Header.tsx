@@ -8,19 +8,18 @@ import {
   Route,
   Link,
   useRouteMatch,
-  useParams
+  useParams,
 } from "react-router-dom";
 
 const Header = styled.div({
   gridArea: "Header",
   display: "flex",
-  // background: "#fcfcfc",
   borderBottom: "1px solid #e9e9e9",
   alignItems: "center",
-  padding: 8,
-  zIndex: 1
+  padding: "8px 32px",
+  zIndex: 1,
 });
 
-export const View = props => {
+export const View = (props) => {
   return <Header>{props.children}</Header>;
 };

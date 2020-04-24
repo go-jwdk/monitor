@@ -11,6 +11,8 @@ import { Context } from "../../app";
 
 const Content = styled.div(GlobalStyle.Contents, {
   gridArea: "Content",
+  display: "grid",
+  gap: 32,
 });
 
 export const View = () => {
@@ -47,57 +49,57 @@ export const View = () => {
             <Card.View>
               <Chart.RenderLineChart intervalState={intervalState} />
             </Card.View>
-            <Table.Table width="100%">
-              <Table.Thead>
-                <Table.Tr>
-                  <Table.Th>Queues</Table.Th>
-                  <Table.Th>Contents</Table.Th>
-                </Table.Tr>
-              </Table.Thead>
-              <Table.Tbody>
-                {value.queues?.map((i, index) => {
-                  return (
-                    <Table.Tr key={index}>
-                      <Table.Td>{i.name}</Table.Td>
-                      <Table.Td>{i.raw_name}</Table.Td>
-                    </Table.Tr>
-                  );
-                })}
-              </Table.Tbody>
-            </Table.Table>
+            <Card.View>
+              <Table.Table width="100%">
+                <Table.Thead>
+                  <Table.Tr>
+                    <Table.Th>Queues</Table.Th>
+                    <Table.Th>Contents</Table.Th>
+                  </Table.Tr>
+                </Table.Thead>
+                <Table.Tbody>
+                  {value.queues?.map((i, index) => {
+                    return (
+                      <Table.Tr key={index}>
+                        <Table.Td>{i.name}</Table.Td>
+                        <Table.Td>{i.raw_name}</Table.Td>
+                      </Table.Tr>
+                    );
+                  })}
+                </Table.Tbody>
+              </Table.Table>
+            </Card.View>
 
             <Card.View>
               <Chart.RenderLineChart intervalState={intervalState} />
             </Card.View>
-            <Table.Table width="100%">
-              <Table.Thead>
-                <Table.Tr>
-                  <Table.Th>Queues</Table.Th>
-                  <Table.Th>Contents</Table.Th>
-                </Table.Tr>
-              </Table.Thead>
-              <Table.Tbody>
-                <Table.Tr>
-                  <Table.Td>A</Table.Td>
-                  <Table.Td>name:aaaa</Table.Td>
-                </Table.Tr>
-                <Table.Tr>
-                  <Table.Td>B</Table.Td>
-                  <Table.Td>name:bbb</Table.Td>
-                </Table.Tr>
-                <Table.Tr>
-                  <Table.Td>C</Table.Td>
-                  <Table.Td>name:ccc</Table.Td>
-                </Table.Tr>
-              </Table.Tbody>
-            </Table.Table>
+            <Card.View>
+              <Table.Table width="100%">
+                <Table.Thead>
+                  <Table.Tr>
+                    <Table.Th>Queues</Table.Th>
+                    <Table.Th>Contents</Table.Th>
+                  </Table.Tr>
+                </Table.Thead>
+                <Table.Tbody>
+                  <Table.Tr>
+                    <Table.Td>A</Table.Td>
+                    <Table.Td>name:aaaa</Table.Td>
+                  </Table.Tr>
+                  <Table.Tr>
+                    <Table.Td>B</Table.Td>
+                    <Table.Td>name:bbb</Table.Td>
+                  </Table.Tr>
+                  <Table.Tr>
+                    <Table.Td>C</Table.Td>
+                    <Table.Td>name:ccc</Table.Td>
+                  </Table.Tr>
+                </Table.Tbody>
+              </Table.Table>
+            </Card.View>
           </Content>
         </>
       )}
     </Context.Consumer>
   );
-};
-
-export const Head = () => {
-  return <>Dashboard</>;
 };

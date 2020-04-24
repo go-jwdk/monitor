@@ -51,7 +51,7 @@ export const RenderLineChart = (props) => {
     <Context.Consumer>
       {(value) => (
         <LineChart
-          width={value.width - value.navWidth - 8 * 2 * 2}
+          width={value.width - value.navWidth - 16 * 2 - 32 * 2}
           height={300}
           data={dataState}
         >
