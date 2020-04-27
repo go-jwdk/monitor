@@ -47,6 +47,7 @@ export const View = () => {
           </Header.View>
           <Content>
             <Card.View>
+              <Card.CardLabel>Primary</Card.CardLabel>
               <Chart.RenderLineChart intervalState={intervalState} />
             </Card.View>
             <Card.View>
@@ -71,6 +72,7 @@ export const View = () => {
             </Card.View>
 
             <Card.View>
+              <Card.CardLabel>Secondary</Card.CardLabel>
               <Chart.RenderLineChart intervalState={intervalState} />
             </Card.View>
             <Card.View>

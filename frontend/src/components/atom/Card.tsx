@@ -12,6 +12,13 @@ const Card = styled.div({
   borderRadius: 10,
 });
 
+export const CardLabel = styled.h2({
+  fontSize: "2rem",
+  margin: 0,
+  padding: "8px 0 32px 8px",
+  lineHeight: 1,
+});
+
 export const View = ({ children }: Props) => {
   return <Card>{children}</Card>;
 };
